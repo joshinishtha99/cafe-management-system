@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cafe Management System</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body ng-app="cafeApp">
+    <div ng-controller="InventoryController as inv">
+        <h1>Inventory Management</h1>
+        
+        <!-- Add Inventory Item Form -->
+        <h2>Add New Item</h2>
+        <form ng-submit="inv.addItem()">
+            <input type="text" ng-model="inv.newItem.itemName" placeholder="Item Name" required>
+            <input type="number" ng-model="inv.newItem.quantity" placeholder="Quantity" required>
+            <input type="number" ng-model="inv.newItem.price" placeholder="Price" required>
+            <button type="submit">Add Item</button>
+        </form>
+
+        <h2>Inventory Items</h2>
+        <div ng-repeat="item in inv.items">
+            <h3>{{ item.itemName }}</h3>
+            <p>Quantity: {{ item.quantity }}</p>
+            <p>Price: ${{ item.price }}</p>
+            <button ng-click="inv.deleteItem(item._id)">Delete</button>
+        </div>
+    </div>
+</body>
+</html>
